@@ -6,10 +6,18 @@ app.controller('PostsController', function($scope, firebaseService) {
 		firebaseService.getPosts().then(function(result){
 			$scope.posts = result;
 		})
-		return $scope.posts;
 	}
 	$scope.getPosts();
 
-	console.log($scope.posts)
+	$scope.addPost = function(){
+		firebaseService.addPost($scope.newPost).then(function(){
+			$scope.getPosts();
+			$scope.newPost = {};
+		})
+	}
+
+	// $scope.vote = function(post.id, direction) {
+	// 	firebaseService.vote()
+	// }
 
 })
