@@ -50,5 +50,9 @@ app.service('firebaseService', function($http, $q) {
 
 	}
 
+	this.newComment = function(postId, commentObj) {
+		return $http.post('https://devmtn.firebaseio.com/posts/' + postId + '/comments.json', {comments: commentObj})
+	}
+
 
 })

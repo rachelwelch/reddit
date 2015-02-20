@@ -22,4 +22,14 @@ app.controller('PostsController', function($scope, firebaseService) {
 		})
 	}
 
+	$scope.submitComment = function(id, comment) {
+		$scope.commentObj = {};
+		commentObj.text = comment;
+		commentObj.timestamp = Date.now();
+
+		firebaseService.newComment(id, commentObj).then(function(){
+			$scope.getPosts();
+		})
+	}
+
 })
