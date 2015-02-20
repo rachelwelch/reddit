@@ -33,20 +33,22 @@ app.service('firebaseService', function($http, $q) {
 		return deferred.promise
 	}
 
-	// this.vote() = function(post.id, direction) {
-	// 	if(direction === 'up') {
- //      		karma++;
- //    	} else if(direction === 'down'){
- //      		karma--;
- //    	}
+	this.vote = function(postId, direction, karma) {
+		if(direction === 'up') {
+      		karma++;
+    	} else if(direction === 'down'){
+      		karma--;
+    	} else {
+    		console.log('them karmas broke');
+    	}
 
- //    	var deferred = $q.defer();
-	// 	$http.patch('https://devmtn.firebaseio.com/posts/' + post.id + '.json').then(function(res){
-	// 		deferred.resolve(res.data);
-	// 	})
-	// 	return deferred.promise
+    	var deferred = $q.defer();
+		$http.patch('https://devmtn.firebaseio.com/posts/' + postId + '.json', {karma: karma}).then(function(res){
+			deferred.resolve(res.data);
+		})
+		return deferred.promise
 
-	// }
+	}
 
 
 })

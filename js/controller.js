@@ -16,8 +16,10 @@ app.controller('PostsController', function($scope, firebaseService) {
 		})
 	}
 
-	// $scope.vote = function(post.id, direction) {
-	// 	firebaseService.vote()
-	// }
+	$scope.vote = function(id, direction) {
+		firebaseService.vote(id, direction, $scope.posts[id].karma).then(function(){
+			$scope.getPosts();
+		})
+	}
 
 })
